@@ -1,30 +1,28 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default function ServiceCard({ icon, text }) {
+export default function PriceCard({ text, onPress }) {
   return (
-    <View style={styles.service}>
-      <Image source={icon} style={styles.icon} />
+    <TouchableOpacity style={styles.service} onPress={onPress}>
       <Text style={styles.text}>{text}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   service: {
     flexDirection: 'row',
-    alignItems: 'center',
+    width: '30%',
     marginBottom: 10,
-    padding: 10,
+    padding: 15,
     backgroundColor: '#ffffff',
     borderWidth: 1,
     borderColor: '#cccccc',
     borderRadius: 5,
-  },
-  icon: {
-    marginRight: 10,
+    textAlign: 'center',
   },
   text: {
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

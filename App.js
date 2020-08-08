@@ -5,19 +5,13 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Header } from './components/layout';
 import Recharge from './pages/Recharge';
+import RechargeForm from './pages/RechargeForm';
 
 export default function App() {
   return (
     <NativeRouter>
       <View style={styles.container}>
         <Header />
-
-        <Link to="/">
-          <Text style={styles.link}>index</Text>
-        </Link>
-        <Link to="/pay-bills">
-          <Text style={styles.link}>bill</Text>
-        </Link>
 
         <View style={styles.main}>
           <Route exact path="/">
@@ -26,6 +20,10 @@ export default function App() {
 
           <Route exact path="/recharge">
             <Recharge />
+          </Route>
+
+          <Route exact path="/recharge-form">
+            <RechargeForm />
           </Route>
 
           <Route exact path="/pay-bills">
