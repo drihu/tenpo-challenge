@@ -1,23 +1,38 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { useHistory } from 'react-router-native';
 
 import left from '../assets/return.png';
 
-export default function Header() {
+export const Container = ({ children }) => (
+  <View style={styles.container}>{children}</View>
+);
+
+export const Header = () => {
+  const history = useHistory();
+  const goBack = () => history.goBack();
+
   return (
     <View style={styles.header}>
       <View>
-        <Image style={styles.left} source={left} />
+        <TouchableOpacity onPress={goBack}>
+          <Image style={styles.left} source={left} />
+        </TouchableOpacity>
       </View>
+
       <View>
         <Text>TU PLATA DISPONIBLE</Text>
         <Text style={styles.cash}>$ 70.000</Text>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
