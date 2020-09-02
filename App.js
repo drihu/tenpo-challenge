@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Header } from './components/layout';
 import Recharge from './pages/Recharge';
 import RechargeForm from './pages/RechargeForm';
+import RechargeSuccess from './pages/RechargeSuccess';
 
 export default function App() {
   return (
@@ -24,6 +25,10 @@ export default function App() {
 
           <Route exact path="/recharge-form">
             <RechargeForm />
+          </Route>
+
+          <Route exact path="/recharge-success">
+            <RechargeSuccess />
           </Route>
 
           <Route exact path="/pay-bills">

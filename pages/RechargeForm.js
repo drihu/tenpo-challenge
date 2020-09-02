@@ -6,13 +6,15 @@ import { Container } from '../components/layout';
 import { Title, Subtitle, Input } from '../components/styled';
 import PriceCard from '../components/PriceCard';
 import greenArrow from '../assets/right-green-arrow.png';
+import { formatPrice } from '../utils/price';
 
 export default function RechargeForm() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const history = useHistory();
 
-  const showModal = () => setIsModalVisible(true);
+  const toggleModal = () => setIsModalVisible(!isModalVisible);
   const goIndex = () => history.push('/');
+  const goSuccess = () => history.push('/recharge-success');
 
   return (
     <Container>
@@ -27,26 +29,33 @@ export default function RechargeForm() {
 
       <Subtitle>Monto a recargar</Subtitle>
       <View style={styles.pricesList}>
-        {[
-          '$ 1.000',
-          '$ 2.000',
-          '$ 5.000',
-          '$ 10.000',
-          '$ 20.000',
-          '$ 50.000',
-        ].map((price, index) => (
-          <PriceCard text={price} key={index} onPress={showModal} />
+        {[1000, 2000, 5000, 10000, 20000, 50000].map((price, index) => (
+          <PriceCard
+            text={formatPrice(price)}
+            key={index}
+            onPress={toggleModal}
+          />
         ))}
       </View>
 
+      <View style={styles.custome}>
+        <Input style={styles.customeInput} placeholder="Ingresa un monto" />
+        <Button
+          color="#35b098"
+          title="    Recargar    "
+          onPress={toggleModal}
+        />
+      </View>
+
+      {/* MODAL */}
       <Modal transparent={true} visible={isModalVisible}>
         <View style={styles.modal}>
           <View style={styles.resume}>
             <Title>Resume</Title>
-            <Subtitle>Confirma los datos de tu descarga</Subtitle>
+            <Subtitle>Confirma los datos de tu recarga</Subtitle>
 
             <View style={styles.checkout}>
-              <Text style={styles.amount}>$ 1.000</Text>
+              <Text style={styles.amount}>$ 5.000</Text>
               <Image style={styles.arrow} source={greenArrow} />
               <View>
                 <Text style={styles.info}>Movistar</Text>
@@ -58,10 +67,10 @@ export default function RechargeForm() {
             <Button
               color="#35b098"
               title="CONFIRMAR RECARGA"
-              onPress={goIndex}
+              onPress={goSuccess}
             />
             <View style={styles.space}></View>
-            <Button color="#cccccc" title="VOLVER" onPress={goIndex} />
+            <Button color="#cccccc" title="VOLVER" onPress={toggleModal} />
           </View>
         </View>
       </Modal>
@@ -74,6 +83,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+  },
+  custome: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+  },
+  customeInput: {
+    width: '60%',
+    marginTop: 20,
   },
   modal: {
     flex: 1,

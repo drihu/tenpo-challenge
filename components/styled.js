@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, Button, StyleSheet } from 'react-native';
+import { Text, TextInput, StyleSheet } from 'react-native';
 
 export const Title = ({ children }) => (
   <Text style={styles.title}>{children}</Text>

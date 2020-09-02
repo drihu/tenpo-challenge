@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
   service: {
     flexDirection: 'row',
     width: '30%',
-    marginBottom: 10,
-    padding: 15,
+    marginBottom: 15,
+    padding: 8,
     backgroundColor: '#ffffff',
     borderWidth: 1,
     borderColor: '#cccccc',
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   text: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });
